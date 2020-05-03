@@ -48,3 +48,14 @@ services:
     volumes:
       - ./dcm4chee-arc/wildfly:/opt/wildfly/standalone
       - ./dcm4chee-arc/storage:/storage
+  viewer:
+    container_name: ohif-viewer
+    build:
+      context: ./Viewers
+      dockerfile: Dockerfile
+    ports:
+      - '80:80'
+    environment:
+      - NODE_ENV=production
+      - APP_CONFIG=config/local_dcm4chee
+    restart: always
