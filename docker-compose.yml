@@ -57,5 +57,5 @@ services:
       - '80:80'
     environment:
       - NODE_ENV=production
-      - APP_CONFIG=config/local_dcm4chee
+      - APP_CONFIG= ./Viewers/platform/viewer/public/config/default.js
     restart: always
