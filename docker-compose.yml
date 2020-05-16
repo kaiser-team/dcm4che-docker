@@ -54,6 +54,3 @@ services:
     volumes:
       - ./dcm4chee-arc/wildfly:/opt/wildfly/standalone
       - ./dcm4chee-arc/storage:/storage
-    deploy:
-      placement:
-        constraints:[node.hostname == node3]
