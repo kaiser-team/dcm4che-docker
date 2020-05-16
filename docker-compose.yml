@@ -12,6 +12,9 @@ services:
     volumes:
       - ./dcm4chee-arc/ldap:/var/lib/openldap/openldap-data
       - ./dcm4chee-arc/slapd.d:/etc/openldap/slapd.d
+    deploy:
+      placement:
+        constraints:[node.hostname == node1]	
   db:
     image: dcm4che/postgres-dcm4chee:12.2-22
     logging:
@@ -23,6 +26,9 @@ services:
     env_file: docker-compose.env
     volumes:
       - ./dcm4chee-arc/db:/var/lib/postgresql/data
+    deploy:
+      placement:
+        constraints:[node.hostname == node2]
   arc:
     image: dcm4che/dcm4chee-arc-psql:5.22.1
     logging:
@@ -48,14 +54,6 @@ services:
     volumes:
       - ./dcm4chee-arc/wildfly:/opt/wildfly/standalone
       - ./dcm4chee-arc/storage:/storage
-  viewer:
-    container_name: ohif-viewer
-    build:
-      context: ./Viewers
-      dockerfile: Dockerfile
-    ports:
-      - '80:80'
-    environment:
-      - NODE_ENV=production
-      - APP_CONFIG= ./Viewers/platform/viewer/public/config/default.js
-    restart: always
+    deploy:
+      placement:
+	constraints:[node.hostname == node3]
