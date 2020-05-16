@@ -14,7 +14,7 @@ services:
       - ./dcm4chee-arc/slapd.d:/etc/openldap/slapd.d
     deploy:
       placement:
-        constraints:[node.hostname == node1]
+        constraints: [node.hostname == node1]
   db:
     image: dcm4che/postgres-dcm4chee:12.2-22
     logging:
@@ -28,7 +28,7 @@ services:
       - ./dcm4chee-arc/db:/var/lib/postgresql/data
     deploy:
       placement:
-        constraints:[node.hostname == node2]
+        constraints: [node.hostname == node2]
   arc:
     image: dcm4che/dcm4chee-arc-psql:5.22.1
     logging:
@@ -54,3 +54,6 @@ services:
     volumes:
       - ./dcm4chee-arc/wildfly:/opt/wildfly/standalone
       - ./dcm4chee-arc/storage:/storage
+    deploy:
+      placement:
+        constraints: [node.hostname == node3]
