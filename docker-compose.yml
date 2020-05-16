@@ -14,7 +14,7 @@ services:
       - ./dcm4chee-arc/slapd.d:/etc/openldap/slapd.d
     deploy:
       placement:
-        constraints:[node.hostname == node1]	
+        constraints:[node.hostname == node1]
   db:
     image: dcm4che/postgres-dcm4chee:12.2-22
     logging:
@@ -56,4 +56,4 @@ services:
       - ./dcm4chee-arc/storage:/storage
     deploy:
       placement:
-	constraints:[node.hostname == node3]
+        constraints:[node.hostname == node3]
