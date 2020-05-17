@@ -55,6 +55,33 @@ services:
       - /opt/dcm4chee-arc/wildfly:/opt/wildfly/standalone
       - /opt/dcm4chee-arc/storage:/storage
     deploy:
-      replicas: 2
+      placement:
+        constraints: [node.hostname == node3]
+  arc1:
+    image: dcm4che/dcm4chee-arc-psql:5.22.1
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+      - "9990:9990"
+      - "9993:9993"
+      - "11112:11112"
+      - "2762:2762"
+      - "2575:2575"
+      - "12575:12575"
+    env_file: docker-compose.env
+    environment:
+      WILDFLY_CHOWN: /opt/wildfly/standalone /storage
+      WILDFLY_WAIT_FOR: ldap:389 db:5432
+    depends_on:
+      - ldap
+      - db
+    volumes:
+      - /opt/dcm4chee-arc/wildfly:/opt/wildfly/standalone
+      - /opt/dcm4chee-arc/storage:/storage
+    deploy:
       placement:
         constraints: [node.hostname == node3]
