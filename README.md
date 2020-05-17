@@ -12,14 +12,14 @@ There are a few prerequisites for this project:
  1. [Docker](https://www.docker.com/get-started)
  2. [Node.js and npm](https://nodejs.org/en/)
  3. [Docker Machine](https://docs.docker.com/machine/install-machine/)
- 4. [Virtual Box]
+ 4. [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
  
 ### Docker-machine creation:
 A docker machine instance can be created using the following command :
 ```
 docker-machine create --driver virtualbox {Node name}
 ```
-To access the Docker-machine created:
+To access the created docker-machine :
  
  ```
  docker-machine ssh {Node name}
@@ -48,8 +48,9 @@ Follow the instructions in the code block to add worker nodes.
 
 ### The basic deployment steps are as follows:
 
- 1. Create a Docker swarm with 3 nodes: node1, node2 and node3.
- 2. On node1, run the following commands :
+ 1. Create a Docker swarm with 3 nodes. Name them **node1, node2 and node3**.
+ 
+ 2. On *node1* , run the following commands :
     ```
     cd /opt
     mkdir dcm4chee-arc
@@ -58,7 +59,7 @@ Follow the instructions in the code block to add worker nodes.
     mkdir slapd.d
     cd ~
     ```
- 3. On node2, run the following commands:
+ 3. On *node2* , run the following commands:
  ```
     cd /opt
     mkdir dcm4chee-arc
@@ -66,7 +67,7 @@ Follow the instructions in the code block to add worker nodes.
     mkdir db
     cd ~
  ```
- 4. On node3, run the following commands:
+ 4. On *node3* , run the following commands:
   ```
     cd /opt
     mkdir dcm4chee-arc
@@ -75,7 +76,7 @@ Follow the instructions in the code block to add worker nodes.
     mkdir storage
     cd ~
  ```
- 5. On node1, clone this repository. 
+ 5. On *node1* , clone this repository. 
  ```
  git clone https://github.com/kaiser-team/dcm4che-docker.git
  ```
@@ -84,7 +85,7 @@ Follow the instructions in the code block to add worker nodes.
  docker stack deploy -c docker-compose.yml dcm4chee
  ```
 
-Upon succesful deployment, DCM4CHEE can be accessed on http://<docker-machine-ip>:8080/dcm4chee-arc/ui2
+Upon succesful deployment, DCM4CHEE can be accessed on http://[docker-machine-ip]:8080/dcm4chee-arc/ui2
 
 ## Uploading data
 
