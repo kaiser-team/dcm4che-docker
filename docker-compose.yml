@@ -64,13 +64,13 @@ services:
       options:
         max-size: "10m"
     ports:
-      - "8443:8443"
-      - "9990:9990"
-      - "9993:9993"
-      - "11112:11112"
-      - "2762:2762"
+      - "8444:8444"
+      - "9991:9991"
+      - "9994:9994"
+      - "11113:11113"
+      - "2763:2763"
       - "2576:2576"
-      - "12575:12575"
+      - "12576:12576"
     env_file: docker-compose.env
     environment:
       WILDFLY_CHOWN: /opt/wildfly/standalone /storage
