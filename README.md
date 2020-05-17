@@ -85,7 +85,7 @@ Follow the instructions in the code block to add worker nodes.
  docker stack deploy -c docker-compose.yml dcm4chee
  ```
 
-Upon succesful deployment, DCM4CHEE can be accessed on http://[docker-machine-ip]:8080/dcm4chee-arc/ui2
+Upon succesful deployment, DCM4CHEE will be on http://[docker-machine-ip]:8080/dcm4chee-arc/ui2
 
 ## Uploading data
 
