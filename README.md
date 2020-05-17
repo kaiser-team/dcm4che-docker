@@ -11,33 +11,80 @@ There are a few prerequisites for this project:
 
  1. [Docker](https://www.docker.com/get-started)
  2. [Node.js and npm](https://nodejs.org/en/)
+ 3. [Docker Machine](https://docs.docker.com/machine/install-machine/)
+ 4. [Virtual Box]
+ 
+### Docker-machine creation:
+A docker machine instance can be created using the following command :
+```
+docker-machine create --driver virtualbox {Node name}
+```
+To access the Docker-machine created:
+ 
+ ```
+ docker-machine ssh {Node name}
+ ```
+ 
+### Docker swarm creation:
+```
+$ docker swarm init --advertise-addr <NODE-IP>
+```
+Eg: 
 
-### The basic installation steps are as follows:
+```
+$ docker swarm init --advertise-addr 192.168.99.100
+Swarm initialized: current node (dxn1zf6l61qsb1josjja83ngz) is now a manager.
 
- 1. Clone this repository
- 2. `cd dcm4chee-docker`
- 3. Clone the [OHIF Viewer](https://github.com/OHIF/Viewers)
+To add a worker to this swarm, run the following command:
 
-At this point, there are two ways to build the project - for production and development:
+    docker swarm join \
+    --token SWMTKN-1-49nj1cmql0jkz5s954yi3oex3nedyz0fb0xx14ie39trti4wxv-8vxv8rssmk743ojnwacrr2e7c \
+    192.168.99.100:2377
 
-#### For production:
+To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+```
+Follow the instructions in the code block to add worker nodes.
 
- 1. Run `docker-compose -p dcm4chee up -d`
-The `d` flag is optional. It provides terminal control and lets docker-compose run in the background.
 
-#### For development:
-We recommend this step if you are making rapid changes to the Viewer.
+### The basic deployment steps are as follows:
 
- 1. Checkout branch `sansViewer` of this repository. It contains docker-compose that will bring up all dcm4chee services, but not the OHIF Viewer.
- 2. Run `docker-compose -p dcm4chee up -d`
- 3. `cd Viewers`
- 4. Run `npm i` or `yarn install` to install all packages. This will take some time.
- 5. Run `npm run dev` or `yarn run dev` to start the development server.
+ 1. Create a Docker swarm with 3 nodes: node1, node2 and node3.
+ 2. On node1, run the following commands :
+    ```
+    cd /opt
+    mkdir dcm4chee-arc
+    cd dcm4chee-arc
+    mkdir ldap
+    mkdir slapd.d
+    cd ~
+    ```
+ 3. On node2, run the following commands:
+ ```
+    cd /opt
+    mkdir dcm4chee-arc
+    cd dcm4chee-arc
+    mkdir db
+    cd ~
+ ```
+ 4. On node3, run the following commands:
+  ```
+    cd /opt
+    mkdir dcm4chee-arc
+    cd dcm4chee-arc
+    mkdir wildfly
+    mkdir storage
+    cd ~
+ ```
+ 5. On node1, clone this repository. 
+ ```
+ git clone https://github.com/kaiser-team/dcm4che-docker.git
+ ```
+ 6. Go into the cloned reporsitory and run :
+ ```
+ docker stack deploy -c docker-compose.yml dcm4chee
+ ```
 
-At this point, the following services will be running at the following ports:
-
-1. dcm4chee_arc: https://www.localhost:8080/dcm4chee-arc/ui
-2. OHIF Viewer: https://www.localhost:80 for the production build, or https://www.localhost:3000/ for development build
+Upon succesful deployment, DCM4CHEE can be accessed on http://<docker-machine-ip>:8080/dcm4chee-arc/ui2
 
 ## Uploading data
 
