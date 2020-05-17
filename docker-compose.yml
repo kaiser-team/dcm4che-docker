@@ -64,13 +64,12 @@ services:
       options:
         max-size: "10m"
     ports:
-      - "8080:8080"
       - "8443:8443"
       - "9990:9990"
       - "9993:9993"
       - "11112:11112"
       - "2762:2762"
-      - "2575:2575"
+      - "2576:2576"
       - "12575:12575"
     env_file: docker-compose.env
     environment:
@@ -84,4 +83,4 @@ services:
       - /opt/dcm4chee-arc/storage:/storage
     deploy:
       placement:
-        constraints: [node.hostname == node3]
+        constraints: [node.hostname == node4]
