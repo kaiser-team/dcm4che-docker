@@ -1,7 +1,7 @@
 version: "3"
 services:
   xnat-web:
-    image: 127.0.0.1:5000/dcm4chee-docker/xnat
+    image: 127.0.0.1:5000/dcm4chee-docker
     build:  
       context: ./xnat
       args:
@@ -34,7 +34,7 @@ services:
         constraints: [node.hostname == node4]
 
   xnat-db:
-    image: 127.0.0.1:5000/dcm4chee-docker/postgres
+    image: 127.0.0.1:5000/dcm4chee-docker
     build: ./postgres
     ports:
       - "5433:5433"
@@ -47,7 +47,7 @@ services:
         constraints: [node.hostname == node4]
 
   xnat-nginx:
-    image: 127.0.0.1:5000/dcm4chee-docker/nginx
+    image: 127.0.0.1:5000/dcm4chee-docker
     build: ./nginx
     ports:
       - "80:80"
