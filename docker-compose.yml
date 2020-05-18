@@ -37,7 +37,7 @@ services:
     image: 127.0.0.1:5000/dcm4chee-docker/postgres
     build: ./postgres
     ports:
-      - "5432:5432"
+      - "5433:5433"
     environment:
         POSTGRES_HOST_AUTH_METHOD: trust
     volumes:
