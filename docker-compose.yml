@@ -48,8 +48,6 @@ services:
     build: ./nginx
     ports:
       - "80:80"
-    expose:
-      - "80"
     links:
       - xnat-web
     deploy:
