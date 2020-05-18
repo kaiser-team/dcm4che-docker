@@ -1,5 +1,60 @@
 version: "3"
 services:
+  xnat-web:
+    build:
+      context: ./xnat
+      args:
+        XNAT_VER: '1.7.6'
+        XNAT_DATASOURCE_DRIVER: 'org.postgresql.Driver'
+        XNAT_DATASOURCE_URL: 'jdbc:postgresql://xnat-db/xnat'
+        XNAT_DATASOURCE_USERNAME: 'xnat'
+        XNAT_DATASOURCE_PASSWORD: 'xnat'
+        XNAT_HIBERNATE_DIALECT: 'org.hibernate.dialect.PostgreSQL9Dialect'
+        TOMCAT_XNAT_FOLDER: ROOT
+        XNAT_ROOT: /data/xnat
+        XNAT_HOME: /data/xnat/home
+    ports:
+      - "8081:8080"
+      - "8000:8000"
+      - "22:22"
+    volumes:
+      - /opt/xnat/plugins:/data/xnat/home/plugins
+      - /opt/xnat-data/home/logs:/data/xnat/home/logs
+      - /opt/xnat-data/archive:/data/xnat/archive
+      - /opt/xnat-data/build:/data/xnat/build
+      - /opt/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - xnat-db
+    environment:
+      - CATALINA_OPTS=-Xms128m -Xmx2048m -Dxnat.home=/data/xnat/home -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000
+      - XNAT_HOME=/data/xnat/home
+    deploy:
+      placement:
+        constraints: [node.hostname == node4]
+
+  xnat-db:
+    build: ./postgres
+    expose:
+      - "5432"
+    environment:
+        POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - /opt/postgres-data:/var/lib/postgresql/data
+    deploy:
+      placement:
+        constraints: [node.hostname == node4]
+
+  xnat-nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+    expose:
+      - "80"
+    links:
+      - xnat-web
+    deploy:
+      placement:
+        constraints: [node.hostname == node4]
   ldap:
     image: dcm4che/slapd-dcm4chee:2.4.48-22.1
     logging:
