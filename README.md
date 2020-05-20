@@ -94,8 +94,9 @@ sudo chmod +x /usr/local/bin/docker-compose
 ```
 git clone https://github.com/kaiser-team/xnat-docker-compose.git
 ```
-9. Next, cd into the xnat-docker-compose directory and run :
+9. CD into the xnat-docker-compose directory and run :
 ```
+cd xnat-docker-compose
 docker-compose up
 ```
 
