@@ -84,7 +84,7 @@ Follow the instructions in the code block to add worker nodes.
  ```
  docker stack deploy -c docker-compose.yml dcm4chee
  ```
-Upon succesful deployment, DCM4CHEE will be on http://[docker-machine-ip]:8080/dcm4chee-arc/ui2. \
+Upon succesful deployment, DCM4CHEE will be on http://[docker-machine-ip]:8080/dcm4chee-arc/ui2. 
 
 To run xnat on Node:  
 
@@ -93,11 +93,11 @@ To run xnat on Node:
 sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 ```
-8. After docker-compose has been installed, clone the following respoitory : 
+2. After docker-compose has been installed, clone the following respoitory : 
 ```
 git clone https://github.com/kaiser-team/xnat-docker-compose.git
 ```
-9. CD into the xnat-docker-compose directory and run :
+3. CD into the xnat-docker-compose directory and run :
 ```
 cd xnat-docker-compose
 docker-compose up
