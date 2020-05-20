@@ -48,7 +48,7 @@ Follow the instructions in the code block to add worker nodes.
 
 ### The basic deployment steps are as follows:
 
- 1. Create a Docker swarm with 3 nodes. Name them **node1, node2 and node3**.
+ 1. Create a Docker swarm with 3 nodes. Name them **node1, node2 , node3 and node4**.
  
  2. On *node1* , run the following commands :
     ```
@@ -84,8 +84,20 @@ Follow the instructions in the code block to add worker nodes.
  ```
  docker stack deploy -c docker-compose.yml dcm4chee
  ```
-
 Upon succesful deployment, DCM4CHEE will be on http://[docker-machine-ip]:8080/dcm4chee-arc/ui2
+7. To run xnat on Node 4. First download docker-compose using the following commands :
+```
+sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+```
+8. After docker-compose has been installed, clone the following respoitory : 
+```
+git clone https://github.com/kaiser-team/xnat-docker-compose.git
+```
+9. Next, cd into the xnat-docker-compose directory and run :
+```
+docker-compose up
+```
 
 ## Uploading data
 
