@@ -3,8 +3,6 @@ This project is an integration of several key open-source software required for 
 
  1. [dcm4chee-arc](https://www.dcm4che.org/)
  2. [OHIF Standalone Viewer](https://github.com/OHIF/Viewers)
- 3. [XNAT](https://www.xnat.org/) (In-Progress)
- 4. [CLARA](https://developer.nvidia.com/clara)
 
 ## Getting Started
 There are a few prerequisites for this project:
