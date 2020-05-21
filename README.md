@@ -100,6 +100,8 @@ git clone https://github.com/kaiser-team/xnat-docker-compose.git
 cd xnat-docker-compose
 docker-compose up
 ```
+## Docker Swarm Visualization 
+![](Images/dockerswarm.jpeg)
 
 ## Uploading data
 
