@@ -101,7 +101,7 @@ cd xnat-docker-compose
 docker-compose up
 ```
 ## Docker Swarm Visualization 
-![](Images/dockerswarm.jpeg)
+<img src="Images/dockerswarm.jpeg" width="450" height="400">
 
 ## Uploading data
 
