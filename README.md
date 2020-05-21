@@ -105,7 +105,7 @@ docker-compose up
 
 You can use common C-STORE methods such as storescu, storescp or the dicomWeb module to upload data into dcm4chee. Be sure to set up the correct AE Titles within dcm4chee. You can do this by going to the ui of your local dcm4chee and then navigating to **Configuration** in the hamburger menu icon.
 
-Storescu command :
+Store-scu command :
 ```
 storescu +sd -aec DCM4CHEE [docker-machine-ip] 11112 {absolute path to folder}
 ```
