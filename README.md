@@ -3,8 +3,6 @@ This project is an integration of several key open-source software required for 
 
  1. [dcm4chee-arc](https://www.dcm4che.org/)
  2. [OHIF Standalone Viewer](https://github.com/OHIF/Viewers)
- 3. [XNAT](https://www.xnat.org/) (In-Progress)
- 4. [CLARA](https://developer.nvidia.com/clara)
 
 ## Getting Started
 There are a few prerequisites for this project:
@@ -84,29 +82,32 @@ Follow the instructions in the code block to add worker nodes.
  ```
  docker stack deploy -c docker-compose.yml dcm4chee
  ```
-Upon succesful deployment, DCM4CHEE will be on http://[docker-machine-ip]:8080/dcm4chee-arc/ui2
-7. To run xnat on Node 4. First download docker-compose using the following commands :
+Upon succesful deployment, DCM4CHEE will be on http://[docker-machine-ip]:8080/dcm4chee-arc/ui2. 
+
+To run xnat on Node:  
+
+1. First download docker-compose using the following commands on node4:
 ```
 sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 ```
-8. After docker-compose has been installed, clone the following respoitory : 
+2. After docker-compose has been installed, clone the following respoitory : 
 ```
 git clone https://github.com/kaiser-team/xnat-docker-compose.git
 ```
-9. Next, cd into the xnat-docker-compose directory and run :
+3. CD into the xnat-docker-compose directory and run :
 ```
+cd xnat-docker-compose
 docker-compose up
 ```
+## Docker Swarm Visualization 
+<img src="Images/dockerswarm.jpeg" width="450" height="400">
 
 ## Uploading data
 
 You can use common C-STORE methods such as storescu, storescp or the dicomWeb module to upload data into dcm4chee. Be sure to set up the correct AE Titles within dcm4chee. You can do this by going to the ui of your local dcm4chee and then navigating to **Configuration** in the hamburger menu icon.
 
-## FAQ 
-
-### Questions regarding the build process' time
-The build process may run up to 300 seconds, when executing the production build. This is normal, as the OHIF Viewer is a Progressive Web Application that converts all modules to static minified assets using Webpack. It performs code-splitting and optimizes assets' build structure within the Docker container it creates, so that the website can run on any lightweight browser that can compile JavaScript. For quick prototyping, we recommend the development build method.
-
-### Questions regarding warnings about unmet peer dependencies
-The Viewer has many package.json files that list multiple packages that need to be installed. It uses [**lerna**](https://github.com/lerna/lerna) to manage multiple package files. While the build process is occurring, many packages that requires other packages may be installed first, cause them to throw unmet peer dependency warnings. As such, there are no missing packages that cause the build process to fail for this project. Please refer to the [OHIF Viewer repository](https://github.com/OHIF/Viewers) if you have further issues.
+Store-scu command :
+```
+storescu +sd -aec DCM4CHEE [docker-machine-ip] 11112 {absolute path to folder}
+```
