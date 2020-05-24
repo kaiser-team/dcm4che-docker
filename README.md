@@ -11,7 +11,10 @@ There are a few prerequisites for this project:
  2. [Node.js and npm](https://nodejs.org/en/)
  3. [Docker Machine](https://docs.docker.com/machine/install-machine/)
  4. [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
- 
+
+## Docker Swarm Visualization 
+<img src="Images/dockerswarm.jpeg" width="450" height="400">
+
 ### Docker-machine creation:
 A docker machine instance can be created using the following command :
 ```
@@ -42,6 +45,48 @@ To add a worker to this swarm, run the following command:
 To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
 ```
 Follow the instructions in the code block to add worker nodes.
+
+
+
+### Node1
+On node1, we run Lightweight Directory Access Protocol (LDAP). The LDAP image that is used in our docker compose file is  [dcm4che/slapd-dcm4chee:2.4.48-22.1](https://hub.docker.com/layers/dcm4che/slapd-dcm4chee/2.4.48-22.1/images/sha256-5603997ca103fa695a1473ec95b9670055ac844806979d7eaa3e20ef4e97dba1?context=explore).This image requires two mount points :
+
+```
+ /opt/dcm4chee-arc/ldap: /var/lib/openldap/openldap-data
+ /opt/dcm4chee-arc/slapd.d:/etc/openldap/slapd.d
+```
+The default mount points are indicated in bold. The mount points can be changed as per preference as long as they are present on node1. By default LDAP is available on port 389, but it can be changed as per user requirement. In order to make these changes, you must directly edit the docker-compose file, and re-deploy the stack.
+
+### Node2
+On node2, we run our database - postgres . The postgres image that is used in our docker compose file is [dcm4che/postgres-dcm4chee:12.2-22](https://hub.docker.com/r/dcm4che/postgres-dcm4chee).This image requires one mount point :
+```
+/opt/dcm4chee-arc/db:/var/lib/postgresql/data
+```
+The default mount point is indicated in bold. The mount point can be changed as per preference as long as it is present on node2. The database running on node2 is a centralised database for the whole docker swarm, so it must be present on node2 to ensure centralised access to the whole docker swarm. By default the database would be running on port 5232, but it can be changed as per user requirement.
+
+### Node3
+On node3, we run the dcm4chee archive along with wildfly.  The dcm4chee archive image we use is [dcm4che/dcm4chee-arc-psql:5.22.1](https://hub.docker.com/r/dcm4che/dcm4chee-arc-psql).This image requires two point points: 
+```
+/opt/dcm4chee-arc/wildfly:/opt/wildfly/standalone
+/opt/dcm4chee-arc/storage:/storage
+```
+The default mount point is indicated in bold. The mount points can be changed as per preference as long as they are present on node3.  Our port configuration
+
+**Ports for the webserver:**
+ HTTP  on port 8080 
+ HTTPS on port 8443
+ 
+**Ports for wildfly administration:**
+ HTTP on port 9990
+ HTTPS on port 9993
+ 
+**DICOM AE-title port :** 11112
+
+
+**These ports should not be changed.**
+
+**NOTE:**
+By default, the nodes in the swarm are named node1, node2 and node3. You can name these however you want, as long as you maintain the names in docker-compose files and during the creation of the corresponding docker-machines.
 
 
 ### The basic deployment steps are as follows:
@@ -100,8 +145,6 @@ git clone https://github.com/kaiser-team/xnat-docker-compose.git
 cd xnat-docker-compose
 docker-compose up
 ```
-## Docker Swarm Visualization 
-<img src="Images/dockerswarm.jpeg" width="450" height="400">
 
 ## Uploading data
 
