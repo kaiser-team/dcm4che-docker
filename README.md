@@ -53,14 +53,14 @@ On node1, we run Lightweight Directory Access Protocol (LDAP). The LDAP image th
 
 <img src="Images/ldap.jpg">
 
-The default mount points are highlighted in orange. The mount points can be changed as per preference as long as they are present on node1. By default LDAP is available on port 389(highlighted in yellow in the image above), but it can be changed as per user requirement. In order to make these changes, you must directly edit the docker-compose file, and re-deploy the stack.
+The default mount points are highlighted in orange. The mount points can be changed as per preference as long as they are present on node1. By default LDAP is available on port 389(highlighted in red in the image above), but it can be changed as per user requirement. In order to make these changes, you must directly edit the docker-compose file, and re-deploy the stack.
 
 ### Node2
 On node2, we run our database - postgres . The postgres image that is used in our docker compose file is [dcm4che/postgres-dcm4chee:12.2-22](https://hub.docker.com/r/dcm4che/postgres-dcm4chee).This image requires one mount point :
 
 <img src="Images/db.jpg">
 
-The default mount points are highlighted in orange. The mount point can be changed as per preference as long as it is present on node2. The database running on node2 is a centralised database for the whole docker swarm, so it must be present on node2 to ensure centralised access to the whole docker swarm. By default the database would be running on port 5232(highlighted in yellow in the image above), but it can be changed as per user requirement.
+The default mount points are highlighted in orange. The mount point can be changed as per preference as long as it is present on node2. The database running on node2 is a centralised database for the whole docker swarm, so it must be present on node2 to ensure centralised access to the whole docker swarm. By default the database would be running on port 5232(highlighted in red in the image above), but it can be changed as per user requirement.
 
 ### Node3
 On node3, we run the dcm4chee archive along with wildfly.  The dcm4chee archive image we use is [dcm4che/dcm4chee-arc-psql:5.22.1](https://hub.docker.com/r/dcm4che/dcm4chee-arc-psql).This image requires two point points: 
