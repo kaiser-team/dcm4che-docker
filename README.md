@@ -1,16 +1,12 @@
 ## About
-This project is an integration of several key open-source software required for annotation and segmentation of DICOM images. The following software is used in this project:
-
- 1. [dcm4chee-arc](https://www.dcm4che.org/)
- 2. [OHIF Standalone Viewer](https://github.com/OHIF/Viewers)
+This project is an integration of several key open-source software required for annotation and segmentation of DICOM images.
 
 ## Getting Started
 There are a few prerequisites for this project:
 
  1. [Docker](https://www.docker.com/get-started)
- 2. [Node.js and npm](https://nodejs.org/en/)
- 3. [Docker Machine](https://docs.docker.com/machine/install-machine/)
- 4. [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
+ 2. [Docker Machine](https://docs.docker.com/machine/install-machine/)
+ 3. [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
 
 ## Docker Swarm Visualization 
 <img src="Images/dockerswarm.jpeg" width="450" height="400">
