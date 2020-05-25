@@ -88,7 +88,7 @@ The default mount points are highlighted in orange. The mount points can be chan
 
 ## Deployment Instructions:
 
- 1. Create a Docker swarm with 3 nodes. Name them **node1, node2 , node3 and node4**.
+ 1. Create a Docker swarm with 3 nodes. Name them **node1, node2 and node3**.
  
  2. On *node1* , run the following commands :
     ```
