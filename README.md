@@ -42,6 +42,9 @@ To add a manager to this swarm, run 'docker swarm join-token manager' and follow
 ```
 Follow the instructions in the code block to add worker nodes.
 
+---
+
+## Docker Node Description
 
 
 ### Node1
@@ -78,11 +81,12 @@ The default mount points are highlighted in orange. The mount points can be chan
 
 **These ports should not be changed.**
 
-**NOTE:**
-By default, the nodes in the swarm are named node1, node2 and node3. You can name these however you want, as long as you maintain the names in docker-compose files and during the creation of the corresponding docker-machines.
+> **NOTE:**
+> By default, the nodes in the swarm are named node1, node2 and node3. You can name these however you want, as long as you maintain the names in docker-compose files and during the creation of the corresponding docker-machines.
 
+---
 
-### The basic deployment steps are as follows:
+## Deployment Instructions:
 
  1. Create a Docker swarm with 3 nodes. Name them **node1, node2 , node3 and node4**.
  
