@@ -126,21 +126,14 @@ The default mount points are highlighted in orange. The mount points can be chan
  ```
 Upon succesful deployment, DCM4CHEE will be on http://[docker-machine-ip]:8080/dcm4chee-arc/ui2. 
 
-To run xnat on Node:  
-
-1. First download docker-compose using the following commands on node4:
+## Shutting down and removing the services
+To stop all the services running on the swarm 
 ```
-sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
+docker service scale ldap=0 db=0 arc=0
 ```
-2. After docker-compose has been installed, clone the following respoitory : 
+To remove all the services running on the swarm
 ```
-git clone https://github.com/kaiser-team/xnat-docker-compose.git
-```
-3. CD into the xnat-docker-compose directory and run :
-```
-cd xnat-docker-compose
-docker-compose up
+docker network rm dcm4chee_default
 ```
 
 ## Uploading data
