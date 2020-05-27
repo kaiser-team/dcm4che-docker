@@ -9,7 +9,13 @@ There are a few prerequisites for this project:
  3. [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
 
 ## Docker Swarm Visualization 
-<img src="Images/dockerswarm.jpeg" width="450" height="400">
+<img src="Images/horizontalscaling.png" width="600" height="480">
+
+More archive nodes can be added to the distributed service as illustrated above. 
+
+You can also scale the service vertically by adding another docker swarm as illustrated below.
+<img src="Images/horizontalscaling.png" width="300" height="240"><img src="Images/horizontalscaling.png" width="300" height="240">
+
 
 ### Docker-machine creation:
 A docker machine instance can be created using the following command :
