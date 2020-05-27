@@ -133,7 +133,7 @@ docker service scale ldap=0 db=0 arc=0
 ```
 To remove all the services running on the swarm
 ```
-docker network rm dcm4chee_default
+docker stack rm dcm4chee
 ```
 
 ## Uploading data
