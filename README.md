@@ -14,6 +14,7 @@ There are a few prerequisites for this project:
 More archive nodes can be added to the distributed service as illustrated above. 
 
 You can also scale the service vertically by adding another docker swarm as illustrated below.
+
 <img src="Images/horizontalscaling.png" width="300" height="240"><img src="Images/horizontalscaling.png" width="300" height="240">
 
 
