@@ -151,3 +151,6 @@ Store-scu command :
 ```
 storescu +sd -aec DCM4CHEE [docker-machine-ip] 11112 {absolute path to folder}
 ```
+## Utilities
+
+We have created a DICOM Utils library, located at: https://github.com/kaiser-team/dicom-utils
